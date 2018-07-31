@@ -104,6 +104,20 @@ protected function schedule(Schedule $schedule)
     $schedule->command('backup:mysql-dump')->dailyAt('00:00');
 ...
 }
-```
+
+public function restore($file_name)
+    {        
+        $name="$file_name";
+        Artisan::call("backup:mysql-restore",['--filename'=>$name, '-y'=>true]);      
+    }
+    public function backup()
+    {
+        Artisan::call("backup:mysql-dump",['filename'=>"myBackup"]);
+    }
+
+`
+
+
+
 ## **Contribute and share ;-)**
 If you like this little piece of code share it with you friends and feel free to contribute with any improvements.
